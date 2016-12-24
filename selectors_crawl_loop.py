@@ -1,8 +1,7 @@
 import socket
 import time
 
-import selectors
-from selectors import EVENT_READ, EVENT_WRITE
+from selectors import EVENT_READ, EVENT_WRITE, DefaultSelector
 
 
 class Timeout(Exception):
@@ -46,7 +45,7 @@ class Task:
 
         next_future.add_done_callback(self.step)
 
-selector = selectors.DefaultSelector()
+selector = DefaultSelector()
 
 class EventLoop(object):
     stopped = False
